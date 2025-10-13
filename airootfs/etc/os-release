@@ -1,0 +1,11 @@
+NAME="Blezing OS"
+PRETTY_NAME="Blezing OS"
+ID=yuros
+BUILD_ID=rolling
+ANSI_COLOR="38;2;23;147;209"
+HOME_URL="https://blezing.yuros.org/"
+DOCUMENTATION_URL="https://blezing.yuros.org/docs/level-41/"
+SUPPORT_URL="https://yuros.org/docs/support/level-41/"
+BUG_REPORT_URL="https://yuros.org/docs/issues/level-41/"
+PRIVACY_POLICY_URL="https://yuros.org/docs/privacy/level-41"
+LOGO=blezing-logo
