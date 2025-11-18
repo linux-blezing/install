@@ -159,4 +159,4 @@ bootctl --path=/boot/ install
 
 ## EXECUTE
 chmod +x /usr/xbin/* &&
-chmod +x /usr/pbin/* &&
+chmod +x /usr/pbin/*
