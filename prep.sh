@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $(pwd)/post/config
+
 if [[ ! -z $(findmnt --mountpoint /mnt) ]]; then 
   umount -R /mnt
 fi
