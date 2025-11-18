@@ -1,2 +1,162 @@
 #!/bin/bash
 
+## LOCALTIME 
+ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime &&
+hwclock --systohc &&
+timedatectl set-ntp true &&
+timedatectl set-timezone Asia/Jakarta &&
+
+
+## LOCALES
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen  
+echo "en_US ISO-8859-1" >> /etc/locale.gen   
+
+
+## INSTALL
+pacman -Syy &&
+pacman -S linux-zen\
+    scx-scheds \
+    wireless-regdb \
+    amd-ucode \
+    mkinitcpio \
+    base-devel \
+    mesa \
+    lib32-mesa \
+    vulkan-radeon \
+    lib32-vulkan-radeon \
+    sof-firmware \
+    linux-firmware-atheros \
+    linux-firmware-intel \
+    linux-firmware-other \
+    linux-firmware-realtek \
+    linux-firmware-amdgpu \
+    linux-firmware-radeon \
+    openssh \
+    firewalld \
+    bluez-utils \
+    dnsmasq \
+    networkmanager \
+    weston \
+    gamescope \
+    gamemode \
+    xorg-server \
+    pipewire \
+    lib32-pipewire \
+    pipewire-alsa \
+    pipewire-jack \
+    pipewire-pulse \
+    ttf-droid \
+    kitty-terminfo \
+    git \
+    wget \
+    flatpak \
+    discover \
+    fuse \
+    umu-launcher \
+    btop \
+    lightdm \
+    lightdm-webkit2-greeter \
+    steam \
+    waydroid \
+    kodi-gles \
+    dolphin-emu \
+    kwallet \
+    plasma-nm \
+    ksshaskpass \
+    kwallet-pam \
+    plasma-desktop \
+    kwalletmanager \
+    aria2 --noconfirm &&
+
+
+## CLEANS
+rm /usr/share/wayland-sessions/kodi-gbm.desktop &&
+rm /usr/share/xsessions/kodi.desktop &&
+
+
+## CONFIG
+cp -fr $(pwd)/src/base/* / &&
+cp -fr $(pwd)/src/extra/amd/* / &&
+
+
+## LOCALE
+locale-gen &&
+
+
+##
+## EMULATOR
+
+## android
+waydroid init -s GAPPS &&
+
+
+## switch
+wget -O /usr/pbin/switch.AppImage https://git.ryujinx.app/api/v4/projects/1/packages/generic/Ryubing/1.3.3/ryujinx-1.3.3-x64.AppImage &&
+chmod +x /usr/pbin/switch.AppImage && 
+
+
+## heroic
+wget -O /usr/pbin/heroic.AppImage https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.18.1/Heroic-2.18.1-linux-x86_64.AppImage &&
+chmod +x /usr/pbin/heroic.AppImage  &&
+
+
+## playstation 1
+wget -O /usr/pbin/plays1.AppImage https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-x64.AppImage &&
+chmod +x /usr/pbin/plays1.AppImage &&
+
+
+## playstation 2
+wget -O /usr/pbin/plays2.AppImage https://github.com/PCSX2/pcsx2/releases/download/v2.4.0/pcsx2-v2.4.0-linux-appimage-x64-Qt.AppImage &&
+chmod +x /usr/pbin/plays2.AppImage &&
+
+
+## playstation 3
+wget -O /usr/pbin/plays3.AppImage https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-c669a0beb721d704241980675154cb35b0221d92/rpcs3-v0.0.38-18364-c669a0be_linux64.AppImage &&
+chmod +x /usr/pbin/plays3.AppImage &&
+
+
+## xbox 360
+wget -O /usr/pbin/xbox36.AppImage https://github.com/xemu-project/xemu/releases/download/v0.8.115/xemu-v0.8.115-x86_64.AppImage &&
+chmod +x /usr/pbin/xbox36.AppImage && 
+
+
+##
+## FIRMWARE
+
+## playstation 3
+mkdir -p /var/games/bios/plays3 &&
+wget -P /var/games/bios/plays3 https://archive.org/download/ps3-official-firmwares/Firmware%204.89/PS3UPDAT.PUP
+
+
+## switch
+mkdir -p /var/games/bios/switch &&
+wget -P /var/games/bios/switch https://github.com/THZoria/NX_Firmware/releases/download/20.5.0/Firmware.20.5.0.zip
+cd /var/games/bios/switch &&
+unzip Firmware.20.5.0.zip &&
+cd /
+
+
+##
+## SERVICE
+systemctl enable lightdm &&
+systemctl enable NetworkManager &&
+systemctl enable update.service &&
+systemctl enable systemd-timesyncd.service &&
+systemctl enable --global pipewire-pulse &&
+systemctl enable waydroid-container.service
+
+
+##
+## BOOTUPS
+mkdir -p /boot/{efi,kernel,loader}
+mkdir -p /boot/efi/{boot,linux,systemd,rescue}
+mv /boot/vmlinuz-linux-zen /boot/amd-ucode.img /boot/kernel/
+rm /etc/mkinitcpio.conf
+rm -fr /etc/mkinitcpio.conf.d/
+rm /boot/initramfs-*
+bootctl --path=/boot/ install
+
+
+## EXECUTE
+chmod +x /usr/xbin/* &&
+chmod +x /usr/pbin/* &&
