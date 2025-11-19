@@ -45,6 +45,7 @@ pacman -S wireless-regdb \
     dnsmasq \
     networkmanager \
     weston \
+    dolphin \
     gamescope \
     gamemode \
     xorg-server \
