@@ -2,107 +2,51 @@
 
 source /post/config
 
+#HOSTNAME
+echo "creami" > /etc/hostname &&
+
 ## LOCALTIME 
-ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime &&
+ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime &&
 hwclock --systohc &&
 timedatectl set-ntp true &&
-timedatectl set-timezone Asia/Jakarta &&
-
-
-## LOCALES
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen  
-echo "en_US ISO-8859-1" >> /etc/locale.gen   
-locale-gen &&
-
-
-## DIRECTO
-mkdir /opt/flat &&
-ln -sf /opt/flat /var/lib/flatpak &&
-
-
-## INSTALL
-pacman -Syy --noconfirm &&
-pacman -S wireless-regdb \
-    amd-ucode \
-    mkinitcpio \
-    base-devel \
-    lvm2 \
-    mesa \
-    kitty \
-    lib32-mesa \
-    vulkan-radeon \
-    lib32-vulkan-radeon \
-    sof-firmware \
-    linux-firmware-atheros \
-    linux-firmware-intel \
-    linux-firmware-other \
-    linux-firmware-realtek \
-    linux-firmware-amdgpu \
-    linux-firmware-radeon \
-    openssh \
-    firewalld \
-    bluez-utils \
-    dnsmasq \
-    networkmanager \
-    weston \
-    neovim \
-    dolphin \
-    gamescope \
-    gamemode \
-    xorg-server \
-    pipewire \
-    lib32-pipewire \
-    pipewire-alsa \
-    pipewire-jack \
-    pipewire-pulse \
-    ttf-droid \
-    kitty-terminfo \
-    bash-completion \
-    git \
-    wget \
-    unzip \
-    flatpak \
-    discover \
-    fuse \
-    umu-launcher \
-    btop \
-    lightdm \
-    lightdm-webkit2-greeter \
-    steam \
-    kodi-gles \
-    dolphin-emu \
-    firefox \
-    kwallet \
-    plasma-nm \
-    ksshaskpass \
-    kwallet-pam \
-    plasma-desktop \
-    kwalletmanager \
-    aria2 --noconfirm &&
-
-
-curl -s 'https://liquorix.net/install-liquorix.sh' | sudo bash &&
-
-## CLEANS
-rm /usr/share/wayland-sessions/kodi-gbm.desktop &&
-rm /usr/share/xsessions/kodi.desktop &&
-
+timedatectl set-timezone $TIMEZONE &&
 
 ## CONFIG
 cp -fr /post/base/* / &&
-cp -fr /post/extra/amd/* / &&
 
 
 ## LOCALE
 locale-gen &&
 
 
-##
-## EMULATOR
+# PROCESSOR
+procieidven=$(grep "vendor_id" /proc/cpuinfo | head -n 1 | awk '{print $3}')
 
-## android
-# pacman -S waydroid
-# waydroid init -s GAPPS &&
+if [[ "$procieidven" == "GenuineIntel" ]]; then
+    pacman -S intel-ucode  --noconfirm
+elif [[ "$procieidven" == "AuthenticAMD" ]]; then
+    pacman -S amd-ucode  --noconfirm
+fi
+
+
+# GRAPHICAL
+graphidven=$(lspci | grep -i --color 'vga\')
+
+if [[ ! -z $(echo $graphidven | grep -i --color 'Intel Corporation') ]];then
+    echo "graphic intel"
+fi
+
+if [[ ! -z $(lspci | grep -i --color '3d\|NVIDIA') ]];then
+    echo "graphic nvidia"
+fi
+
+if [[ ! -z $(lspci | grep -i --color '3d\|AMD\|AMD/ATI\|RADEON') ]];then
+    echo "graphic radeon"
+fi
+
+
+
+curl -s 'https://liquorix.net/install-liquorix.sh' | sudo bash &&
 
 
 ## switch
@@ -140,66 +84,46 @@ chmod +x /usr/pbin/xbox36.AppImage &&
 
 ## playstation 3
 mkdir -p /var/games/bios/plays3 &&
-wget -P /var/games/bios/plays3 https://archive.org/download/ps3-official-firmwares/Firmware%204.89/PS3UPDAT.PUP
+wget -P /var/games/bios/plays3 https://archive.org/download/ps3-official-firmwares/Firmware%204.89/PS3UPDAT.PUP &&
 
 
 ## switch
 mkdir -p /var/games/bios/switch &&
-wget -P /var/games/bios/switch https://github.com/THZoria/NX_Firmware/releases/download/20.5.0/Firmware.20.5.0.zip
+wget -P /var/games/bios/switch https://github.com/THZoria/NX_Firmware/releases/download/20.5.0/Firmware.20.5.0.zip &&
 cd /var/games/bios/switch &&
 unzip Firmware.20.5.0.zip &&
-cd /
+cd / &&
 
 
 ##
 ## SERVICE
 systemctl enable lightdm &&
 systemctl enable dnsmasq &&
+systemctl enable sshd &&
 systemctl enable update.timer &&
+systemctl enable firewalld &&
 systemctl enable NetworkManager &&
 systemctl enable --global pipewire-pulse &&
 systemctl enable systemd-timesyncd.service &&
-# systemctl enable waydroid-container.service
-
-
-##
-## BOOTUPS
-mkdir -p /boot/{efi,kernel,loader}
-mkdir -p /boot/efi/{boot,linux,systemd,rescue}
-mv /boot/vmlinuz-linux-lqx /boot/amd-ucode.img /boot/kernel/
-rm /etc/mkinitcpio.conf
-rm -fr /etc/mkinitcpio.conf.d/
-rm /boot/initramfs-*
-bootctl --path=/boot/ install
-
 
 ## EXECUTE
 chmod +x /usr/xbin/* &&
 chmod +x /usr/pbin/* &&
 
 
-## LUKSDISK
-echo "rd.luks.name=$(blkid -s UUID -o value $DISKPROC)=root root=/dev/proc/root" > /etc/cmdline.d/01-boot.conf &&
-echo "data UUID=$(blkid -s UUID -o value $DISKDATA) none" >> /etc/crypttab 
-mkinitcpio -P
+##
+## BOOTUPS
+mkdir -p /boot/{efi,kernel,loader} &&
+mkdir -p /boot/efi/{boot,linux,systemd,rescue} &&
+mv /boot/vmlinuz-linux-lqx /boot/*-ucode.img /boot/kernel/ &&
+rm /etc/mkinitcpio.conf &&
+rm -fr /etc/mkinitcpio.conf.d/ &&
+rm /boot/initramfs-* &&
+bootctl --path=/boot/ install &&
+mkinitcpio -P &&
 
-## ADMIN ADD
-useradd -d /var/lib/telnet -u 23 net &&
-usermod -aG wheel net &&
-chown -R net:net /var/lib/telnet &&
-passwd net
-
-
-## MEDIA ADD
-useradd -d /home/media family &&
-chown -R family:family /home/media &&
-passwd family
-
-
-## NOTIF
-echo "
-1. config cmdline 01-boot.conf
-2. config /etc/crypttab
-3. add complement userneed
-4. generate initramfs
-"
+## USERADD
+useradd -m $USERNAME &&
+usermod -aG wheel $USERNAME &&
+echo "add user passworrd" &&
+passwd $USERNAME

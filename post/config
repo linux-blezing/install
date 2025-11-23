@@ -1,3 +1,5 @@
 DISKBOOT=/dev/nvme0n1p1
 DISKPROC=/dev/nvme0n1p3
 DISKDATA=/dev/nvme0n1p4
+USERNAME=ibnu
+TIMEZONE=Asia/Jakarta
