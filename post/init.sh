@@ -99,7 +99,6 @@ mkdir -p /boot/efi/{boot,linux,systemd,rescue} &&
 mv /boot/*-ucode.img /boot/kernel/ &&
 rm /etc/mkinitcpio.conf &&
 rm -fr /etc/mkinitcpio.conf.d/ &&
-rm /boot/initramfs-* &&
 bootctl --path=/boot install &&
 
 
