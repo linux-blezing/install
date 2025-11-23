@@ -2,9 +2,12 @@
 
 source /install/post/config
 source /install/post/packer
+source /install/post/inform
 
 echo $DISKPROC;
 echo $DISKDATA;
+
+header_install &&
 
 if [[ ! -z $(findmnt --mountpoint /mnt) ]]; then 
  	umount -R /mnt
