@@ -110,6 +110,7 @@ systemctl enable NetworkManager &&
 systemctl enable --global pipewire-pulse &&
 systemctl enable systemd-timesyncd.service &&
 
+
 ## EXECUTE
 chmod +x /usr/xbin/* &&
 chmod +x /usr/pbin/* &&
@@ -123,10 +124,12 @@ mv /boot/*-ucode.img /boot/kernel/ &&
 rm /etc/mkinitcpio.conf &&
 rm -fr /etc/mkinitcpio.conf.d/ &&
 rm /boot/initramfs-* &&
-bootctl --path=/boot/ install &&
+bootctl --path=/boot install &&
+
 
 echo "root=$DISKPROC" > /etc/cmdline.d/01-boot.conf &&
 mkinitcpio -P &&
+
 
 ## USERADD
 useradd -m $USERNAME &&
