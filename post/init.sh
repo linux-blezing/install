@@ -120,6 +120,8 @@ rm /etc/mkinitcpio.conf &&
 rm -fr /etc/mkinitcpio.conf.d/ &&
 rm /boot/initramfs-* &&
 bootctl --path=/boot/ install &&
+
+echo "root=$DISKPROC" > /etc/cmdline.d/01-boot.conf
 mkinitcpio -P &&
 
 ## USERADD
