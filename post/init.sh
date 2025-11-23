@@ -119,7 +119,7 @@ chmod +x /usr/pbin/* &&
 ## BOOTUPS
 mkdir -p /boot/{efi,kernel,loader} &&
 mkdir -p /boot/efi/{boot,linux,systemd,rescue} &&
-mv /boot/vmlinuz-linux-lqx /boot/*-ucode.img /boot/kernel/ &&
+mv /boot/*-ucode.img /boot/kernel/ &&
 rm /etc/mkinitcpio.conf &&
 rm -fr /etc/mkinitcpio.conf.d/ &&
 rm /boot/initramfs-* &&
