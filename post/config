@@ -1,5 +1,9 @@
-DISKBOOT=/dev/nvme0n1p5
-DISKPROC=/dev/nvme0n1p6
-DISKDATA=/dev/nvme0n1p7
-USERNAME=ibnu
-TIMEZONE=Asia/Jakarta
+#!/bin/bash
+
+source /post/dial.sh
+
+DISKBOOT=$BOOT
+DISKPROC=$ROOT
+DISKDATA=$DATA
+USERNAME=$USER
+TIMEZONE=$TIME
