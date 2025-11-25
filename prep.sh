@@ -48,7 +48,7 @@ graphidven=$(lspci | grep -i --color 'vga\')
 
 if [[ ! -z $(echo $graphidven | grep -i --color 'Intel Corporation') ]];then
     echo "graphic intel" &&
-    pacstrap /mnt lib32-vulkan-intel vulkan-intel --noconfirm
+    pacstrap /mnt vulkan-intel --noconfirm
 fi
 
 if [[ ! -z $(lspci | grep -i --color '3d\|NVIDIA') ]];then
@@ -57,7 +57,7 @@ fi
 
 if [[ ! -z $(lspci | grep -i --color '3d\|AMD\|AMD/ATI\|RADEON') ]];then
     echo "graphic radeon" &&
-    pacstrap /mnt lib32-vulkan-amd vulkan-amd --noconfirm
+    pacstrap /mnt vulkan-amd --noconfirm
 fi
 
 
