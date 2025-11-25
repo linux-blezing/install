@@ -55,9 +55,9 @@ if [[ ! -z $(lspci | grep -i --color '3d\|NVIDIA') ]];then
     echo "graphic nvidia"
 fi
 
-if [[ ! -z $(lspci | grep -i --color '3d\|AMD\|AMD/ATI\|RADEON') ]];then
+if [[ ! -z $(lspci | grep -i --color '3d\|RADEON') ]];then
     echo "graphic radeon" &&
-    pacstrap /mnt vulkan-amd --noconfirm
+    pacstrap /mnt vulkan-radeon --noconfirm
 fi
 
 
