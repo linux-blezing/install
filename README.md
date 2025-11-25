@@ -14,7 +14,8 @@ Cutefish
 4. Firehub
 5. Firewalld
 6. Gnome Calendar
-7. Mongo DB
-8. Postgre Sql
-9. Telegram
-10. Zoom
+7. KeepassXc
+8. Mongo DB
+9. Postgre Sql
+10. Telegram
+11. Zoom
