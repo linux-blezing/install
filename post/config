@@ -1,9 +1,6 @@
 #!/bin/bash
-
-source /post/dial.sh
-
-DISKBOOT=$BOOT
-DISKPROC=$ROOT
-DISKDATA=$DATA
-USERNAME=$USER
-TIMEZONE=$TIME
+DISKBOOT=/dev/nvme0n1p5
+DISKPROC=/dev/nvme0n1p7
+DISKDATA=/dev/nvme0n1p8
+USERNAME=sultan
+TIMEZONE=Asia/Jakarta

@@ -2,23 +2,16 @@ DISTRO_INSTALLATION_PACKAGE="wireless-regdb
     mkinitcpio 
     base-devel 
     mesa 
-    kitty 
-    lib32-mesa 
     sof-firmware 
     linux-firmware
     openssh 
-    firewalld 
+    firewalld
+    apparmor
     bluez-utils 
     dnsmasq 
     networkmanager 
-    weston 
-    neovim 
-    dolphin 
-    gamescope 
-    gamemode 
-    xorg-server 
-    pipewire 
-    lib32-pipewire 
+    neovim  
+    pipewire  
     pipewire-alsa 
     pipewire-jack 
     pipewire-pulse 
@@ -28,18 +21,28 @@ DISTRO_INSTALLATION_PACKAGE="wireless-regdb
     git 
     wget 
     unzip 
-    flatpak 
-    discover 
-    fuse 
-    umu-launcher 
+    flatpak  
+    fuse  
     btop 
     sddm 
-    steam 
-    dolphin-emu 
-    firefox 
-    kwallet 
-    plasma-nm 
-    plasma 
-    kwalletmanager 
+    firefox  
+    cutefish-calculator
+    cutefish-core
+    cutefish-dock
+    cutefish-filemanager
+    cutefish-icons
+    cutefish-launcher
+    cutefish-qt-plugins
+    cutefish-screenlocker
+    cutefish-screenshot
+    cutefish-settings
+    cutefish-statusbar
+    cutefish-terminal
+    cutefish-wallpapers
     aria2
-    konsole"
+    evolution
+    gnome-calendar
+    keepassxc
+    telegram-desktop
+    obsidian
+    gnome-keyring"
