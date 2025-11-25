@@ -1,4 +1,4 @@
-# CREAMIE OS IMAGE PRESET
+# blezing OS IMAGE PRESET
 # mkinitcpio preset file for the 'linux-lqx' package
 
 
@@ -12,12 +12,12 @@ PRESETS=('default')
 
 
 #default_config="/etc/mkinitcpio.conf"
-#default_image="/boot/creamie.img"
-default_uki="/boot/efi/linux/creamie.efi"
-#default_options="--splash /usr/share/systemd/bootctl/creamie.bmp"
+#default_image="/boot/blezing.img"
+default_uki="/boot/efi/linux/blezing.efi"
+#default_options="--splash /usr/share/systemd/bootctl/blezing.bmp"
 
 
 #fallback_config="/etc/mkinitcpio.conf"
-#fallback_image="/boot/creamie-fallback.img"
-#fallback_uki="/efi/EFI/Linux/creamie.efi"
+#fallback_image="/boot/blezing-fallback.img"
+#fallback_uki="/efi/EFI/Linux/blezing.efi"
 #fallback_options="-S autodetect"
