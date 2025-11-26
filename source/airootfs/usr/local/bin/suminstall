@@ -75,4 +75,6 @@ cp -fr /usr/local/bin/install/ /mnt/post &&
 
 # ARCHCHROOT
 arch-chroot /mnt /bin/bash /post/init.sh &&
-rm -fr /mnt/post &&
+
+# FINISHING
+rm -fr /mnt/post && sleep 2 && umount -R /mnt && reboot
