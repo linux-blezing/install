@@ -7,7 +7,7 @@ source /post/config
 #HOSTNAME
 echo "blezing" > /etc/hostname &&
 
-
+##
 ## LOCALTIME 
 ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime &&
 hwclock --systohc &&
@@ -15,11 +15,9 @@ timedatectl set-ntp true &&
 timedatectl set-timezone $TIMEZONE &&
 
 
+##
 ## CONFIG
 cp -fr /post/base/* / &&
-
-
-## LOCALE
 locale-gen &&
 
 
@@ -30,6 +28,7 @@ mkdir -p /boot/efi/{boot,linux,systemd,rescue} &&
 mv /boot/*-ucode.img /boot/kernel/ &&
 rm /etc/mkinitcpio.conf &&
 rm -fr /etc/mkinitcpio.conf.d/ &&
+
 
 
 ## KERNELS
@@ -59,6 +58,7 @@ chmod +x /usr/rbin/* &&
 ## BOOTING
 echo "rd.luks.name=$(blkid -s UUID -o value $DISKPROC)=root root=/dev/mapper/root" > /etc/cmdline.d/01-boot.conf &&
 echo "data UUID=$(blkid -s UUID -o value $DISKDATA) none" >> /etc/crypttab &&
+bootctl --path=/boot/ install &&
 mkinitcpio -P &&
 
 
