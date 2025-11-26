@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# CONFIGURRE
+nvim /usr/local/bin/install/config
 source /usr/local/bin/install/config
 source /usr/local/bin/install/packer
 

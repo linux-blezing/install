@@ -1,4 +1,6 @@
-#!/bin/bash
+# SETUP YOUR DISK AND INSTALLATION INFORMATION
+#
+
 DISKBOOT=/dev/nvme0n1p5
 DISKPROC=/dev/nvme0n1p7
 DISKDATA=/dev/nvme0n1p8
