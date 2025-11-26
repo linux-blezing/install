@@ -3,8 +3,8 @@
 
 source /post/config
 
-
-#HOSTNAME
+##
+## HOSTNAME
 echo "blezing" > /etc/hostname &&
 
 ##
@@ -30,7 +30,7 @@ rm /etc/mkinitcpio.conf &&
 rm -fr /etc/mkinitcpio.conf.d/ &&
 
 
-
+##
 ## KERNELS
 curl -s 'https://liquorix.net/install-liquorix.sh' | sudo bash &&
 
@@ -48,13 +48,14 @@ systemctl enable --global pipewire-pulse &&
 systemctl enable systemd-timesyncd.service &&
 systemctl enable --global gcr-ssh-agent.socket &&
 
+
 ##
 ## EXECUTE
 chmod +x /usr/xbin/* &&
 chmod +x /usr/rbin/* &&
 
 
-
+##
 ## BOOTING
 echo "rd.luks.name=$(blkid -s UUID -o value $DISKPROC)=root root=/dev/mapper/root" > /etc/cmdline.d/01-boot.conf &&
 echo "data UUID=$(blkid -s UUID -o value $DISKDATA) none" >> /etc/crypttab &&
@@ -62,6 +63,7 @@ bootctl --path=/boot/ install &&
 mkinitcpio -P &&
 
 
+##
 ## USERADD
 useradd -m $USERNAME &&
 usermod -aG wheel $USERNAME &&
