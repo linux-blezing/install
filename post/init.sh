@@ -39,8 +39,8 @@ curl -s 'https://liquorix.net/install-liquorix.sh' | sudo bash &&
 ##
 ## SERVICE
 systemctl enable sddm &&
-systemctl enable dnsmasq &&
 systemctl enable sshd &&
+systemctl enable dnsmasq &&
 systemctl enable update.timer &&
 systemctl enable firewalld &&
 systemctl enable NetworkManager &&
