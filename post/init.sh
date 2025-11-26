@@ -48,7 +48,7 @@ systemctl enable --global pipewire-pulse &&
 systemctl enable systemd-timesyncd.service &&
 systemctl enable --global gcr-ssh-agent.socket &&
 
-
+##
 ## EXECUTE
 chmod +x /usr/xbin/* &&
 chmod +x /usr/rbin/* &&
