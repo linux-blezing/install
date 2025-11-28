@@ -27,7 +27,7 @@ if [[ $1 == "--reset" ]];then
 fi
 
 if [[ $1 == "--getapp" ]];then
-    /bin/bash $appdir/library/getpkg &&
+    /bin/bash $(pwd)/scripts/library/getpkg $reldir &&
     exit
 fi
 
