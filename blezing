@@ -4,7 +4,10 @@ if [[ -z $1 ]]; then
     echo "Error : Blezing command need additional paramater"
 fi
 
+
 appdir=/install/scripts
+reldir=$(pwd)
+
 
 if [[ $1 == "--install" ]];then
     /bin/bash $appdir/library/installs &&
