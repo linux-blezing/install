@@ -27,7 +27,20 @@ locale-gen &&
 ## BOOTUPS
 mkdir -p /boot/{efi,kernel,blezing} &&
 mkdir -p /boot/efi/{boot,linux,systemd,rescue} &&
-mv /boot/vmlinuz-linux-zen /boot/*-ucode.img /boot/kernel/ &&
+
+if [[ -e "/boot/vmlinuz-linux-zen"  ]]; then
+    mv /boot/vmlinuz-linux-zen /boot/kernel/
+fi
+
+if [[ -e "/boot/vmlinuz-linux-lts"  ]]; then
+    mv /boot/vmlinuz-linux-lts /boot/kernel/
+fi
+
+if [[ -e "/boot/vmlinuz-linux-lqx"  ]]; then
+    mv /boot/vmlinuz-linux-lqx /boot/kernel/
+fi
+
+mv /boot/*-ucode.img /boot/kernel/ &&
 rm /boot/initramfs* &&
 rm /etc/mkinitcpio.conf &&
 rm -fr /etc/mkinitcpio.conf.d/ &&
