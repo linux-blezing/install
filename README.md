@@ -1,21 +1,25 @@
-# config-global
-general configuration for blezing os
+# Installation 
+Installation scripts for Vesper OS
 
-# Kernel
-Linux Liquirox
+## System Information
+### kernel
+1. linux-zen
 
-# UI
-Cutefish
+### dekstop
+1. plasma
+2. sddm
 
-# Application
+### core application
+1. merkuro          ( to do list )
+2. kalk             ( calculator )
+3. firefox
+3. okular           ( file viewer )  
+3. obsidian         ( note taking app )
+4. evolution        ( screen recording )
+5. keepassxc
+6. telegram-desktop 
+
+### plan application
 1. Apparmor
-2. Evolution
-3. Firefox
 4. Firehub
-5. Firewalld
-6. Gnome Keyring
-7. Gnome Calendar
-8. KeepassXc
-9. Obsidian
-10. Telegram
 11. Zoom

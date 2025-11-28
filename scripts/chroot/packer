@@ -42,4 +42,8 @@ DISTRO_INSTALLATION_PACKAGE="base
     kalk
     konsole
     okular
-    obsidian"
+    merkuro
+    evolution
+    obsidian
+    keepassxc
+    telegram-desktop"
