@@ -34,6 +34,3 @@ if [[ $1 == "--update" ]];then
     echo "push to gitrepo" && git push &&
     exit
 fi
-
-
-
