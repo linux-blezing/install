@@ -1,25 +1,22 @@
 # Installation 
-Installation scripts for Vesper OS
+Installation scripts for Blezing OS
 
 ## System Information
-### kernel
-1. linux-zen
 
-### dekstop
-1. plasma
-2. sddm
-
-### core application
-1. merkuro          ( to do list )
-2. kalk             ( calculator )
-3. firefox
-3. okular           ( file viewer )  
-3. obsidian         ( note taking app )
-4. evolution        ( screen recording )
-5. keepassxc
-6. telegram-desktop 
-
-### plan application
-1. Apparmor
-4. Firehub
-11. Zoom
+| no  | name             | functionality                                                        | type    |
+| --- | ----------       | -------------------------------------------------------------------- | ------- |
+| 1   | linux-zen        | kernel                                                               | core    |
+| 2   | plasma           | desktop environtment                                                 | core    |
+| 3   | sddm             | display manager                                                      | core    |
+| 4   | mekuro           | event scheduler                                                      | core    |
+| 5   | kalk             | calculator                                                           | core    |
+| 6   | okular           | file viewer                                                          | core    |
+| 7   | obsidian         | note taking app                                                      | core    |
+| 15  | firefox          | web browser                                                          | core    |
+| 15  | evolution        | mail system                                                          | core    |
+| 15  | keepassxc        | password management                                                  | core    |
+| 15  | telegram-desktop | message app                                                          | core    |
+| 12  | wps-office       | office tools                                                         | aur     |
+| 16  | zoom             | video conferencing and web conferencing service                      | aur     |
+| 17  | firewalld        | firewall management                                                  | extra   |
+| 17  | apparmor         | security profile                                                     | extra   |
