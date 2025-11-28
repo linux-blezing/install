@@ -12,13 +12,12 @@ fi
 
 
 ## prepare packar
-if [[ -d $1/packer ]]; then
-    rm -fr $1/packer/*
-else
+if [[ ! -d $1/packer ]]; then
     mkdir $1/packer
 fi
 
 
+
 ## download packar
 sudo pacman --sync --downloadonly --noconfirm --cachedir $1/packer $DISTRO_INSTALLATION_PACKAGE &&
-sudo repo-add $1/packer/eyerise.db.tar.zst $1/packer/*.pkg.tar.zst
+sudo repo-add $1/packer/blezing.db.tar.zst $1/packer/*.pkg.tar.zst
