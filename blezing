@@ -4,7 +4,6 @@ if [[ -z $1 ]]; then
     echo "Error : Blezing command need additional paramater"
 fi
 
-
 appdir=/install/scripts
 
 if [[ $1 == "--install" ]];then
