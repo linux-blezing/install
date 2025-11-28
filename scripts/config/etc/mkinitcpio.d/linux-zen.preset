@@ -1,0 +1,23 @@
+# BLEZING OS IMAGE PRESET
+# mkinitcpio preset file for the 'linux-lts' package
+
+
+ALL_kver="/boot/kernel/vmlinuz-linux-lts"
+ALL_config="/etc/mkinitcpio.d/default.conf"
+ALL_kerneldest="/boot/kernel/vmlinuz-linux-lts"
+
+
+PRESETS=('default')
+#PRESETS=('default' 'fallback')
+
+
+#default_config="/etc/mkinitcpio.conf"
+#default_image="/boot/blezing.img"
+default_uki="/boot/efi/linux/blezing.efi"
+#default_options="--splash /usr/share/systemd/bootctl/blezing.bmp"
+
+
+#fallback_config="/etc/mkinitcpio.conf"
+#fallback_image="/boot/blezing-fallback.img"
+#fallback_uki="/efi/EFI/Linux/blezing.efi"
+#fallback_options="-S autodetect"

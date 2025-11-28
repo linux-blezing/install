@@ -1,0 +1,6 @@
+DISKMAIN=/dev/nvme0n1
+DISKBOOT=/dev/nvme0n1p5
+DISKPROC=/dev/nvme0n1p7
+DISKDATA=/dev/nvme0n1p8
+USERNAME=blezing
+TIMEZONE=Asia/Jakarta

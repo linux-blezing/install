@@ -1,2 +1,0 @@
-#!/bin/bash
-scp distrib/* yurosmain@frs.sourceforge.net:/home/frs/project/blezing/release-alpha-01
