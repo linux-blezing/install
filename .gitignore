@@ -1,2 +1,4 @@
 distrib/*
-factory/*
+distrib
+packer/*
+packer
